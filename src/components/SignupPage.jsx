@@ -16,7 +16,7 @@ const handleSignUp = async (e) => {
   };
 
   try {
-    const response = await axios.post('/api/signup', userData);
+    const response = await axios.post('https://storyverse-jsoserver.onrender.com/users', userData);
 
     if (response.status === 201) {
      
@@ -115,7 +115,7 @@ function SignupPage() {
 
       <div className="bg-white p-8 rounded-lg shadow-md w-96 transform hover:scale-105 transition-transform relative z-10">
         <h2 className="text-3xl font-semibold text-center text-indigo-700 mb-6">Sign Up</h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSignUp}>
           <div>
             <label htmlFor="email" className="block text-gray-600">Email</label>
             <input

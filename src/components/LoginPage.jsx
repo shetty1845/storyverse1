@@ -1,11 +1,46 @@
 import React from 'react';
+import { useAuth } from '../AuthContext/Context';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+  const info = useAuth();
+  console.log(info)
+  const nav = useNavigate();
+  async function submitHandler(e){
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const userData = {
+      email,
+      password,
+     
+    };
+    try{
+      const res = await fetch("https://storyverse-jsoserver.onrender.com/users");
+      const resJson = await res.json();
+      const user = resJson[0]
+      if(user.email === userData.email && user.password === userData.password){
+        info.login();
+        userData['language'] = user.language;
+        userData['country'] = user.country;
+        info.login();
+        info.setUser(userData);
+        nav("/");
+    }else{
+
+      alert("Invalid credentials");
+    }
+  }catch(error){
+    console.log(error)
+      alert("Something went wrong");
+    }
+  }
+
   return (
     <div className="bg-gradient-to-r from-[#ef060f] to-[#b60cf2] min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-96 transform hover:scale-105 transition-transform">
         <h2 className="text-3xl font-semibold text-center text-indigo-700 mb-6">Log In</h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={submitHandler}>
           <div className="relative">
             <label htmlFor="email" className="block text-gray-600 font-semibold mb-1">Email</label>
           <input

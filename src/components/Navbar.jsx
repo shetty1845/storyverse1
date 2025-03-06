@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-
+import { useAuth } from '../AuthContext/Context';
 function Navbar() {
+  const info = useAuth();
+  console.log(info);
   return (
     <nav className="p-4 flex justify-between items-center bg-gradient-to-r from-[#EF060F] to-[#b60cf2] fixed top-0 left-0 w-full z-50">
       <div className="flex items-center">
@@ -19,10 +21,10 @@ function Navbar() {
 
           Browse
         </Link>
-        <Link to="/signin" className="text-[#081A42] p-6 font-semibold">
+        {!info.isLoggedIn && 
+        (<Link to="/signin" className="text-[#081A42] p-6 font-semibold">
           Sign In
-        </Link>
-
+        </Link>)}
         {/* Dropdown Menu */}
         <div className="relative group inline-block text-[#081A42]">
           <button className="text-[#081A42] p-6 font-semibold group-hover:text-[#EF060F] focus:outline-none">

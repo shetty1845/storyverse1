@@ -11,22 +11,26 @@ import WriteStoriesPage from './WriteStoriesPage.jsx';
 import ReadStoriesPage from './ReadStoriesPage';
 import SignupPage from '../components/SignupPage';
 import LoginPage from '../components/LoginPage';
+import { useAuth } from '../AuthContext/Context.jsx';
 
 
 function HomePage() {
+  const info = useAuth()
   return (
     <>
     <div className="navbar bg-customBgColor">
             <Navbar />
             {/* <FlowingTextSection /> */}
-            <HeroSection />
-            <DiscoverSection />
-            <SeeYourStorySection />
-            <GetInTouchSection />
+            {!info.isLoggedIn &&  <HeroSection />}
+            {!info.isLoggedIn && <DiscoverSection />}
+            {!info.isLoggedIn && <SeeYourStorySection />}
+            {!info.isLoggedIn && <GetInTouchSection />}
             
             <WriteStoriesPage />
-            <ReadStoriesPage />     
-            <SignupPage />  
+            <ReadStoriesPage />    
+           
+            <SignupPage/>
+           
             <LoginPage />
             <Footer />
          

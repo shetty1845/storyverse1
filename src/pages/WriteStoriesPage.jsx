@@ -25,9 +25,9 @@ const handleStorySubmission = async () => {
 
 function WriteStoriesPage() {
   return (
-    <div className="bg-gradient-to-br from-[#EF060F] to-[#b60cf2] min-h-screen p-8">
+    <div className="bg-gradient-to-br from-[#EF060F] to-[#b60cf2] p-8">
       <div className="container mx-auto py-8">
-        <div className="bg-white p-8 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+        <div className="bg-white p-8 rounded-lg shadow-md ">
           <h2 className="text-4xl font-extrabold text-center text-indigo-700 mb-8 animate__animated animate__fadeIn animate__delay-1s">
             Write Your Story
           </h2>
